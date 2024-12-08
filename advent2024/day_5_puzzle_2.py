@@ -29,7 +29,7 @@ def correct_operations(operations, dependencies):
     total = 0
     for operation in operations:
         if not is_valid_operation(operation, dependencies):
-            # Elements that have more elements depending on them will come first, as keys with lesser value will come first
+            # Elements that have less elements depending on them will come first, as keys with lesser value will come first
             corrected_operation = sorted(operation, key=lambda x: sum(1 for dep in dependencies[x] if dep in operation))
             total += corrected_operation[len(corrected_operation) // 2]
     return total
