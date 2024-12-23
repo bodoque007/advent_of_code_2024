@@ -30,7 +30,8 @@ with open("input.txt", "r") as file:
                 for col, c in enumerate(line):
                     if c == '@':
                         guard_pos = (len(board) - 1, col)
-                        found_guard = True                
+                        found_guard = True
+                        board[len(board) - 1][col] = '.'
         else:
             operations += line
 
@@ -65,13 +66,9 @@ for operation in operations:
         position_to_obstacle = find_pos(next_pos[0], next_pos[1], dx, dy)
         if position_to_obstacle != (-1, -1):
             move_obstacles(next_pos[0], next_pos[1], position_to_obstacle)
-            board[guard_pos[0]][guard_pos[1]] = '.'
             guard_pos = next_pos
-            board[guard_pos[0]][guard_pos[1]] = '@'
     elif board[next_pos[0]][next_pos[1]] == '.':
-        board[guard_pos[0]][guard_pos[1]] = '.'
         guard_pos = next_pos
-        board[guard_pos[0]][guard_pos[1]] = '@'
 
 
 count = 0
